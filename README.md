@@ -223,7 +223,6 @@ Unordered list of planned improvements:
 * Messenger Extensions support
 * Checkbox Plugin support
 * Thread Settings support
-* User Profile API support
 
 ## License
 This project is licensed under the terms of the [MIT license](LICENSE).
