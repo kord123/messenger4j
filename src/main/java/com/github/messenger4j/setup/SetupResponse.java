@@ -1,11 +1,6 @@
 package com.github.messenger4j.setup;
 
-import com.google.gson.JsonObject;
-
 import java.util.Objects;
-
-import static com.github.messenger4j.internal.JsonHelper.Constants.*;
-import static com.github.messenger4j.internal.JsonHelper.getPropertyAsString;
 
 /**
  * @author Max Grabenhorst
@@ -13,16 +8,7 @@ import static com.github.messenger4j.internal.JsonHelper.getPropertyAsString;
  */
 public final class SetupResponse {
 
-    private final String result;
-
-    public static SetupResponse fromJson(JsonObject jsonObject) {
-        final String result = getPropertyAsString(jsonObject, PROP_RESULT);
-        return new SetupResponse(result);
-    }
-
-    private SetupResponse(String result) {
-        this.result = result;
-    }
+    private String result;
 
     public String getResult() {
         return result;

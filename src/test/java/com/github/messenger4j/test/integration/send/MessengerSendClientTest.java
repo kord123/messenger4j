@@ -1,6 +1,6 @@
 package com.github.messenger4j.test.integration.send;
 
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.POST;
+import static com.github.messenger4j.common.http.MessengerHttpClient.Method.POST;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -21,8 +21,8 @@ import com.github.messenger4j.send.QuickReply;
 import com.github.messenger4j.send.Recipient;
 import com.github.messenger4j.send.SenderAction;
 import com.github.messenger4j.send.buttons.Button;
-import com.github.messenger4j.send.http.MessengerHttpClient;
-import com.github.messenger4j.send.http.MessengerHttpClient.Method;
+import com.github.messenger4j.common.http.MessengerHttpClient;
+import com.github.messenger4j.common.http.MessengerHttpClient.Method;
 import com.github.messenger4j.send.templates.ButtonTemplate;
 import com.github.messenger4j.send.templates.GenericTemplate;
 import com.github.messenger4j.send.templates.ListTemplate;

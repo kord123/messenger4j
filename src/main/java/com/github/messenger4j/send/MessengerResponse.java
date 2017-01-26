@@ -1,11 +1,5 @@
 package com.github.messenger4j.send;
 
-import static com.github.messenger4j.internal.JsonHelper.Constants.PROP_ATTACHMENT_ID;
-import static com.github.messenger4j.internal.JsonHelper.Constants.PROP_MESSAGE_ID;
-import static com.github.messenger4j.internal.JsonHelper.Constants.PROP_RECIPIENT_ID;
-import static com.github.messenger4j.internal.JsonHelper.getPropertyAsString;
-
-import com.google.gson.JsonObject;
 import java.util.Objects;
 
 /**
@@ -14,22 +8,9 @@ import java.util.Objects;
  */
 public final class MessengerResponse {
 
-    private final String recipientId;
-    private final String messageId;
-    private final String attachmentId;
-
-    public static MessengerResponse fromJson(JsonObject jsonObject) {
-        final String recipientId = getPropertyAsString(jsonObject, PROP_RECIPIENT_ID);
-        final String messageId = getPropertyAsString(jsonObject, PROP_MESSAGE_ID);
-        final String attachmentId = getPropertyAsString(jsonObject, PROP_ATTACHMENT_ID);
-        return new MessengerResponse(recipientId, messageId, attachmentId);
-    }
-
-    private MessengerResponse(String recipientId, String messageId, String attachmentId) {
-        this.recipientId = recipientId;
-        this.messageId = messageId;
-        this.attachmentId = attachmentId;
-    }
+    private final String recipientId = null;
+    private final String messageId = null;
+    private final String attachmentId = null;
 
     public String getRecipientId() {
         return recipientId;

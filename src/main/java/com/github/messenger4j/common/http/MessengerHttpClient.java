@@ -1,4 +1,4 @@
-package com.github.messenger4j.send.http;
+package com.github.messenger4j.common.http;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import java.io.IOException;
 public interface MessengerHttpClient {
 
     enum Method{
+        GET,
         POST,
         DELETE
     }

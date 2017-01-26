@@ -1,7 +1,7 @@
 package com.github.messenger4j.setup;
 
 import com.github.messenger4j.internal.PreConditions;
-import com.github.messenger4j.send.http.MessengerHttpClient;
+import com.github.messenger4j.common.http.MessengerHttpClient;
 
 /**
  * @author Max Grabenhorst

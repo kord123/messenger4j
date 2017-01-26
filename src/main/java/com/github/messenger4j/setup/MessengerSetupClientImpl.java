@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.DELETE;
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.POST;
+import static com.github.messenger4j.common.http.MessengerHttpClient.Method.DELETE;
+import static com.github.messenger4j.common.http.MessengerHttpClient.Method.POST;
 import static com.github.messenger4j.setup.SettingType.CALL_TO_ACTIONS;
 import static com.github.messenger4j.setup.SettingType.GREETING;
 import static com.github.messenger4j.setup.ThreadState.EXISTING_THREAD;
@@ -27,7 +27,7 @@ public class MessengerSetupClientImpl extends MessengerSendClientAbstract<SetupP
     private final Logger logger = LoggerFactory.getLogger(MessengerSetupClientImpl.class);
 
     MessengerSetupClientImpl(MessengerSetupClientBuilder builder) {
-        super(String.format(FB_GRAPH_API_URL, builder.pageAccessToken),
+        super(SetupResponse.class, String.format(FB_GRAPH_API_URL, builder.pageAccessToken),
                 builder.httpClient == null ? new DefaultMessengerHttpClient() : builder.httpClient);
         logger.debug("{} initialized successfully.", MessengerSetupClientImpl.class.getSimpleName());
     }
@@ -93,10 +93,5 @@ public class MessengerSetupClientImpl extends MessengerSendClientAbstract<SetupP
                 .build();
 
         return sendPayload(payload, DELETE);
-    }
-
-    @Override
-    protected SetupResponse responseFromJson(JsonObject responseJsonObject) {
-        return SetupResponse.fromJson(responseJsonObject);
     }
 }

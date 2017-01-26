@@ -1,29 +1,18 @@
 package com.github.messenger4j.test.integration.setup;
 
 import com.github.messenger4j.MessengerPlatform;
-import com.github.messenger4j.common.WebviewHeightRatio;
 import com.github.messenger4j.exceptions.MessengerApiException;
-import com.github.messenger4j.send.*;
-import com.github.messenger4j.send.buttons.Button;
-import com.github.messenger4j.send.http.MessengerHttpClient;
-import com.github.messenger4j.send.http.MessengerHttpClient.Method;
-import com.github.messenger4j.send.templates.ButtonTemplate;
-import com.github.messenger4j.send.templates.GenericTemplate;
-import com.github.messenger4j.send.templates.ListTemplate;
-import com.github.messenger4j.send.templates.ReceiptTemplate;
+import com.github.messenger4j.common.http.MessengerHttpClient;
+import com.github.messenger4j.common.http.MessengerHttpClient.Method;
 import com.github.messenger4j.setup.CallToAction;
 import com.github.messenger4j.setup.MessengerSetupClient;
 import com.github.messenger4j.setup.SetupResponse;
-import com.github.messenger4j.setup.Type;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatchers;
 
-import java.util.Collections;
-import java.util.List;
-
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.DELETE;
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.POST;
+import static com.github.messenger4j.common.http.MessengerHttpClient.Method.DELETE;
+import static com.github.messenger4j.common.http.MessengerHttpClient.Method.POST;
 import static com.github.messenger4j.setup.Type.POSTBACK;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.*;

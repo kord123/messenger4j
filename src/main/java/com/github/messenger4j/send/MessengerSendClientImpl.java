@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.POST;
+import static com.github.messenger4j.common.http.MessengerHttpClient.Method.POST;
 
 /**
  * @author Max Grabenhorst
@@ -25,7 +25,7 @@ final class MessengerSendClientImpl extends MessengerSendClientAbstract<Messagin
     private final Logger logger = LoggerFactory.getLogger(MessengerSendClientImpl.class);
 
     MessengerSendClientImpl(MessengerSendClientBuilder builder) {
-        super(String.format(FB_GRAPH_API_URL, builder.pageAccessToken),
+        super(MessengerResponse.class, String.format(FB_GRAPH_API_URL, builder.pageAccessToken),
                 builder.httpClient == null ? new DefaultMessengerHttpClient() : builder.httpClient);
 
         logger.debug("{} initialized successfully.", MessengerSendClientImpl.class.getSimpleName());
@@ -302,10 +302,5 @@ final class MessengerSendClientImpl extends MessengerSendClientAbstract<Messagin
 
     private Recipient buildRecipient(String recipientId) {
         return Recipient.newBuilder().recipientId(recipientId).build();
-    }
-
-    @Override
-    protected MessengerResponse responseFromJson(JsonObject responseJsonObject) {
-        return MessengerResponse.fromJson(responseJsonObject);
     }
 }

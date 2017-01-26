@@ -1,6 +1,6 @@
 package com.github.messenger4j.send;
 
-import com.github.messenger4j.send.http.MessengerHttpClient;
+import com.github.messenger4j.common.http.MessengerHttpClient;
 
 import java.io.IOException;
 
@@ -8,9 +8,6 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.DELETE;
-import static com.github.messenger4j.send.http.MessengerHttpClient.Method.POST;
 
 /**
  * @author Max Grabenhorst
@@ -25,7 +22,9 @@ public final class DefaultMessengerHttpClient implements MessengerHttpClient {
     @Override
     public Response execute(String url, String jsonBody, Method method) throws IOException {
         final MediaType jsonMediaType = MediaType.parse(APPLICATION_JSON_CHARSET_UTF_8);
-        final RequestBody body = RequestBody.create(jsonMediaType, jsonBody);
+
+        final RequestBody body = jsonBody == null ? null : RequestBody.create(jsonMediaType, jsonBody);
+
         final Request request = new Request.Builder().url(url).method(method.name(), body).build();
         try (okhttp3.Response response = this.okHttp.newCall(request).execute()) {
             return new MessengerHttpClient.Response(response.code(), response.body().string());

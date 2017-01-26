@@ -111,13 +111,9 @@ public final class JsonHelper {
         PROP_WATERMARK("watermark"),
         PROP_DELIVERY("delivery"),
         PROP_MIDS("mids"),
-        PROP_RECIPIENT_ID("recipient_id"),
-        PROP_MESSAGE_ID("message_id"),
-        PROP_ATTACHMENT_ID("attachment_id"),
         PROP_ERROR("error"),
         PROP_CODE("code"),
-        PROP_FB_TRACE_ID("fbtrace_id"),
-        PROP_RESULT("result");
+        PROP_FB_TRACE_ID("fbtrace_id");
 
         private final String value;
 
