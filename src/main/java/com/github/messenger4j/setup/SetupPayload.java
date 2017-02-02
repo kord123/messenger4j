@@ -3,7 +3,6 @@ package com.github.messenger4j.setup;
 import static java.util.Collections.singletonList;
 
 import com.github.messenger4j.internal.PreConditions;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,11 +14,11 @@ import java.util.List;
  */
 final class SetupPayload {
 
-    private SettingType settingType;
+    private final SettingType settingType;
 
-    private ThreadState threadState;
+    private final ThreadState threadState;
 
-    private List<CallToAction> callToActions;
+    private final List<CallToAction> callToActions;
 
     private final Greeting greeting;
 

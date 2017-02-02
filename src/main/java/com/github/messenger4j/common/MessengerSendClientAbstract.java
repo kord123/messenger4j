@@ -6,7 +6,6 @@ import com.github.messenger4j.exceptions.MessengerIOException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 import java.io.IOException;
 
 /**
@@ -17,13 +16,12 @@ import java.io.IOException;
 public abstract class MessengerSendClientAbstract<P, R> {
 
     private final Gson gson;
-
+    private final JsonParser jsonParser;
     private final String requestUrl;
     private final MessengerHttpClient httpClient;
-    private final JsonParser jsonParser;
 
     protected MessengerSendClientAbstract(String requestUrl, MessengerHttpClient httpClient) {
-        this.gson = GsonFactory.getGson();
+        this.gson = GsonFactory.createGson();
         this.jsonParser = new JsonParser();
         this.requestUrl = requestUrl;
         this.httpClient = httpClient;
