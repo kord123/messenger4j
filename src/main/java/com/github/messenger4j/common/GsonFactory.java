@@ -62,15 +62,15 @@ final class GsonFactory {
 
             @SuppressWarnings("unchecked")
             final Class<T> rawType = (Class<T>) type.getRawType();
-
             if (!rawType.isEnum()) {
                 return null;
             }
 
+            final TypeAdapter<T> delegateAdapter = gson.getDelegateAdapter(this, type);
             final Map<String, T> transformedToConstant = new HashMap<>();
             final Map<T, String> constantToTransformed = new HashMap<>();
             for (T constant : rawType.getEnumConstants()) {
-                final String transformedConstant = transform(constant);
+                final String transformedConstant = transform(constant, delegateAdapter);
                 transformedToConstant.put(transformedConstant, constant);
                 constantToTransformed.put(constant, transformedConstant);
             }
@@ -99,19 +99,21 @@ final class GsonFactory {
 
         /**
          * Transforms the given enum constant to lower case. If a {@code SerializedName} annotation is present,
-         * the provided name is used.
+         * default adpter result is returned.
          *
-         * @param obj the enumeration constant
+         * @param enumVal             the enumeration constant
+         * @param delegateAdapter     default adapter in case if enum value has {@code SerializedName} annotation
          * @return the transformed string representation of the constant
          */
-        private String transform(Object obj) {
-            SerializedName serializedName = null;
+        private <T> String transform(T enumVal, TypeAdapter<T> delegateAdapter) {
+            boolean hasSerializedNameAnnotation = false;
+            String enumValue = ((Enum)enumVal).name();
             try {
-                serializedName = obj.getClass().getField(obj.toString()).getAnnotation(SerializedName.class);
+                hasSerializedNameAnnotation = enumVal.getClass().getField(enumValue).isAnnotationPresent(SerializedName.class);
             } catch (NoSuchFieldException e) {
-                // use default 'toLowerCase' mechanism
+                // should never happen
             }
-            return serializedName != null ? serializedName.value() : obj.toString().toLowerCase();
+            return hasSerializedNameAnnotation ? delegateAdapter.toJsonTree(enumVal).getAsString() : enumValue.toLowerCase();
         }
     }
 }
